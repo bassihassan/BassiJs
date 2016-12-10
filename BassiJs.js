@@ -1,6 +1,3 @@
-/**
- * Created by Hassan on 10/12/2016.
- */
 ;((w => {
     const document = window.document;
     Bassi=selector => new Bassi.init(selector)
@@ -18,6 +15,8 @@
                 this["elements"].push(selector);
             }
         }
+        this.n=this.elements.length;
+        this.pos=0;
 
     }
     Bassi.init.prototype.hide=function(){
@@ -62,10 +61,10 @@
     Bassi.init.prototype.click=function(callback){
         var callback=callback.bind(this);
         if(this.elements.length !=0){
-           this.elements.forEach(e => {
-               e.addEventListener("click",e => {
-                   callback(e)});
-           });
+            this.elements.forEach(e => {
+                e.addEventListener("click",e => {
+                    callback(e)});
+            });
         }
         return this;
     }
@@ -77,7 +76,7 @@
     }
     Bassi.init.prototype.addClass=function (...ClassName) {
         this.elements.forEach(e => {
-                e.classList.add(...ClassName);
+            e.classList.add(...ClassName);
         })
         return this;
     }
@@ -91,7 +90,7 @@
     Bassi.init.prototype.toggleClass=function(ClassName,elt){
         if(elt === undefined){
             this.elements.forEach(e => {
-              e.classList.toggle(ClassName);
+                e.classList.toggle(ClassName);
             })
         }else {
             elt.classList.toggle(ClassName);
@@ -153,6 +152,18 @@
             }
         }while(next !=null);
         return new Bassi.init(elements);
+    }
+    Bassi.init.prototype.first=function () {
+        return new Bassi.init(this.elements[this.pos]);
+    }
+    Bassi.init.last=function () {
+        return new Bassi.init(this.elements[this.n-1]);
+    }
+    Bassi.init.eq=function (i) {
+        if(this.elements[i]!=undefined){
+            return new Bassi.init(this.elements[i]);
+        }
+        return null
     }
     w.Bassi=w.B=Bassi;
 }))(window);
