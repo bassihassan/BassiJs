@@ -159,10 +159,10 @@
     Bassi.init.prototype.first=function () {
         return new Bassi.init(this.elements[this.pos]);
     }
-    Bassi.init.last=function () {
+    Bassi.init.prototype.last=function () {
         return new Bassi.init(this.elements[this.n-1]);
     }
-    Bassi.init.eq=function (i) {
+    Bassi.init.prototype.eq=function (i) {
         if(this.elements[i]!=undefined){
             return new Bassi.init(this.elements[i]);
         }
