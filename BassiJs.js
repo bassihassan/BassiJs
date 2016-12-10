@@ -1,3 +1,6 @@
+/**
+ * Created by Hassan on 10/12/2016.
+ */
 ;((w => {
     const document = window.document;
     Bassi=selector => new Bassi.init(selector)
