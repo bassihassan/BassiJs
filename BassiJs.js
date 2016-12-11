@@ -2,7 +2,7 @@
  * Created by Hassan on 10/12/2016.
  */
 ;((w => {
-    const document = window.document;
+    const document = w.document;
     Bassi=selector => new Bassi.init(selector)
     Bassi.init=function (selector) {
         let element;
