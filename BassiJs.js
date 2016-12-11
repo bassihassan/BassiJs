@@ -22,6 +22,13 @@
         this.pos=0;
 
     }
+    Bassi.init.prototype.on=function (event,callback) {
+        this.elements.forEach(e => {
+            e.addEventListener(event,ev => {
+                callback(ev);
+            })
+        })
+    }
     Bassi.init.prototype.hide=function(){
         this.elements.forEach(e => {
             e.style.display="none";
@@ -34,12 +41,15 @@
     }
     Bassi.init.prototype.remove=function () {
         const element=this.elements[0].parentElement.removeChild(this.elements[0]);
-        return element;
+        return this;
     }
     Bassi.init.prototype.html=function (text) {
         this.elements.forEach(e => {
             e.innerHTML=text;
         })
+    }
+    Bassi.init.prototype.text=function () {
+        return this.elements[0].value;
     }
     Bassi.init.prototype.append=function(node){
         this.elements.forEach(e => {
@@ -167,6 +177,27 @@
             return new Bassi.init(this.elements[i]);
         }
         return null
+    }
+    Bassi.init.prototype.find=function (selector) {
+        const elements=[];
+        this.elements.forEach(e => {
+            let elt = e.querySelector(selector);
+            if(elt !=null)
+            elements.push(elt)
+        })
+        return new Bassi.init(elements);
+    }
+    Bassi.init.prototype.clone=function () {
+        return new Bassi.init(this.elements[0].cloneNode(true));
+    }
+    Bassi.init.prototype.getNodes=function () {
+        return this.elements;
+    }
+    Bassi.init.prototype.attr=function (key,value) {
+        if(value == undefined){
+            return this.elements[0].getAttribute(key);
+        }
+        return this.elements[0].setAttribute(key,value);
     }
     w.Bassi=w.B=Bassi;
 }))(window);
